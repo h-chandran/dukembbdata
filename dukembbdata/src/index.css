@@ -6,48 +6,20 @@
   html {
     color-scheme: dark;
   }
-  
+
   body {
-    @apply bg-gray-900 text-white min-h-screen;
-  }
-  
-  * {
-    @apply border-gray-700;
+    @apply min-h-screen bg-slate-950 font-sans text-white antialiased;
   }
 }
 
 @layer components {
-  .duke-gradient {
-    @apply bg-gradient-to-r from-duke-blue to-duke-blue-light;
-  }
-  
-  .card-hover {
-    @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl;
-  }
-  
-  .stat-badge {
-    @apply px-3 py-1 rounded-full text-sm font-medium bg-gray-800 text-gray-200;
-  }
-  
-  .hype-bar {
-    @apply h-2 rounded-full transition-all duration-1000 ease-out;
-  }
-  
-  .carousel-container {
-    @apply relative overflow-hidden rounded-2xl;
-  }
-  
-  .carousel-slide {
-    @apply flex transition-transform duration-500 ease-in-out;
+  .glass {
+    @apply border border-white/10 bg-white/10 backdrop-blur-lg;
   }
 }
 
 @layer utilities {
-  .text-shadow {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  }
-  
-  .glass-effect {
-    @apply bg-white/10 backdrop-blur-sm border border-white/20;
+  .text-glow {
+    text-shadow: 0 0 32px rgba(59, 130, 246, 0.45);
   }
 }
