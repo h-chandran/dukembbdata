@@ -1,192 +1,110 @@
-import { useState, useEffect } from 'react';
-import { config, isConfigValid } from './config/env.js';
-import { usePlayersData } from './hooks/usePlayersData.js';
-import ControlsBar from './components/ControlsBar.jsx';
-import PlayerStatsCarousel from './components/PlayerStatsCarousel.jsx';
-import SummaryBar from './components/SummaryBar.jsx';
-import SetupPanel from './components/SetupPanel.jsx';
-import EmptyState from './components/EmptyState.jsx';
-import Toast from './components/Toast.jsx';
+import { useMemo, useState } from 'react';
+import { motion } from 'framer-motion';
+import PlayerCarousel from './components/PlayerCarousel.jsx';
+import { players as basePlayers } from './data/players.js';
 
-function App() {
-  const [selectedLeague, setSelectedLeague] = useState(config.defaultLeagueId?.toString() || '');
-  const [selectedSeason, setSelectedSeason] = useState(config.defaultSeason?.toString() || '');
-  const [selectedTeam, setSelectedTeam] = useState(null);
-  const [showSetup, setShowSetup] = useState(false);
-  const [toastMessage, setToastMessage] = useState('');
+const heroGradient =
+  'pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.35),rgba(15,23,42,0.95))]';
 
-  // Load players data
-  const {
-    players,
-    teamAverages,
-    hypeIndex,
-    topPerformers,
-    loading,
-    error,
-    usingMockData,
-  } = usePlayersData(selectedTeam?.id, selectedSeason);
+const badgeStyles =
+  'rounded-full border border-white/10 bg-white/10 px-3 py-1 text-[0.65rem] uppercase tracking-[0.4em] text-blue-100/70 backdrop-blur';
 
-  // Check if we need to show setup panel
-  useEffect(() => {
-    if (!isConfigValid() && !selectedTeam) {
-      setShowSetup(true);
-    }
-  }, [selectedTeam]);
+export default function App() {
+  const [positionFilter, setPositionFilter] = useState('All');
 
-  // URL state management
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const teamId = params.get('team');
-    const season = params.get('season');
-    const league = params.get('league');
-
-    if (teamId && season) {
-      setSelectedSeason(season);
-      setSelectedLeague(league || '');
-      // Note: In a real app, you'd fetch team details by ID
-    }
+  const positions = useMemo(() => {
+    const unique = new Set(basePlayers.map((player) => player.position));
+    return ['All', ...unique];
   }, []);
 
-  const updateURL = (teamId, season, league) => {
-    const params = new URLSearchParams();
-    if (teamId) params.set('team', teamId);
-    if (season) params.set('season', season);
-    if (league) params.set('league', league);
-    
-    const newURL = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
-    window.history.pushState({}, '', newURL);
-  };
-
-  const handleLeagueChange = (leagueId) => {
-    setSelectedLeague(leagueId);
-    setSelectedTeam(null);
-    updateURL(null, selectedSeason, leagueId);
-  };
-
-  const handleSeasonChange = (season) => {
-    setSelectedSeason(season);
-    updateURL(selectedTeam?.id, season, selectedLeague);
-  };
-
-  const handleTeamChange = (team) => {
-    setSelectedTeam(team);
-    updateURL(team?.id, selectedSeason, selectedLeague);
-    setShowSetup(false);
-  };
-
-  const handleUseDuke = () => {
-    if (config.defaultTeamId) {
-      setSelectedLeague(config.defaultLeagueId?.toString() || '');
-      setSelectedSeason(config.defaultSeason?.toString() || '');
-      setSelectedTeam({
-        id: config.defaultTeamId,
-        name: 'Duke',
-        logo: 'https://a.espncdn.com/i/teamlogos/ncaa/500/150.png',
-      });
-      updateURL(config.defaultTeamId, config.defaultSeason, config.defaultLeagueId);
-      setShowSetup(false);
-    } else {
-      setToastMessage('Duke team ID not configured. Please set VITE_DEFAULT_TEAM_ID in your .env file.');
-    }
-  };
-
-  const handleShare = (message) => {
-    setToastMessage(message);
-    setTimeout(() => setToastMessage(''), 3000);
-  };
-
-  const handleSetup = () => {
-    setShowSetup(true);
-  };
-
-  // Show setup panel if needed
-  if (showSetup) {
-    return (
-      <div className="min-h-screen bg-gray-900 p-4">
-        <SetupPanel onTeamSelected={handleTeamChange} />
-      </div>
-    );
-  }
-
-  // Show empty state if no team selected
-  if (!selectedTeam) {
-    return (
-      <div className="min-h-screen bg-gray-900 p-4">
-        <EmptyState onSetup={handleSetup} />
-      </div>
-    );
-  }
+  const filteredPlayers = useMemo(() => {
+    if (positionFilter === 'All') return basePlayers;
+    return basePlayers.filter((player) => player.position === positionFilter);
+  }, [positionFilter]);
 
   return (
-    <div className="min-h-screen bg-gray-900">
-      {/* Header */}
-      <header className="bg-gray-800 border-b border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="text-4xl">🏀</div>
-              <div>
-                <h1 className="text-3xl font-bold text-white">Duke Basketball Stats Hub</h1>
-                <p className="text-gray-400">
-                  {selectedTeam.name} • Season {selectedSeason}-{parseInt(selectedSeason) + 1}
-                </p>
+    <div className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
+      <div className={heroGradient} aria-hidden />
+
+      <div className="absolute inset-x-0 top-0 -z-10 h-1/2 bg-gradient-to-b from-blue-500/20 via-slate-950/80 to-slate-950" aria-hidden />
+
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-16 px-6 pb-24 pt-12 sm:px-8 lg:px-12">
+        <header className="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
+          <div className="max-w-2xl space-y-6">
+            <div className="flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.5em] text-blue-200/70">
+              <span className={badgeStyles}>Duke Blue Devils</span>
+              <span className={badgeStyles}>Cameron Legends</span>
+            </div>
+            <h1 className="text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
+              The next era of Duke hoops, captured on a rotating stage.
+            </h1>
+            <p className="max-w-xl text-base text-slate-300/80 sm:text-lg">
+              Meet the players electrifying Cameron Indoor Stadium. Swipe through spotlights crafted with TailwindCSS and brought to life with Framer Motion.
+            </p>
+            <div className="flex flex-wrap items-center gap-6 text-sm uppercase tracking-[0.35em] text-blue-100/70">
+              <span className="flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-blue-400 shadow-[0_0_12px_rgba(96,165,250,0.8)]" />
+                Hype Index Live
+              </span>
+              <span className="flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.8)]" />
+                Freshman Phenoms
+              </span>
+            </div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="glass flex w-full max-w-sm flex-col gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 text-sm text-slate-200/80 backdrop-blur lg:max-w-md"
+          >
+            <div className="space-y-3 text-xs uppercase tracking-[0.3em] text-blue-200/80">
+              <p>Inside Cameron</p>
+              <div className="grid grid-cols-2 gap-3 text-[0.65rem]">
+                <div className="rounded-2xl bg-white/5 p-3 text-center text-slate-200/90">
+                  <p className="text-xs text-blue-100/80">National Titles</p>
+                  <p className="text-2xl font-semibold text-white">5</p>
+                </div>
+                <div className="rounded-2xl bg-white/5 p-3 text-center text-slate-200/90">
+                  <p className="text-xs text-blue-100/80">NBA Alumni</p>
+                  <p className="text-2xl font-semibold text-white">100+</p>
+                </div>
               </div>
+              <p className="text-[0.65rem] leading-6 text-slate-200/80">
+                Cameron Indoor is more than a gym—it's a rite of passage. These cards spotlight the Duke stars writing the next chapter.
+              </p>
             </div>
-            {selectedTeam.logo && (
-              <img 
-                src={selectedTeam.logo} 
-                alt={`${selectedTeam.name} logo`}
-                className="w-16 h-16 object-contain"
-              />
-            )}
-          </div>
-        </div>
-      </header>
+          </motion.div>
+        </header>
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 py-8 space-y-8">
-        {/* Controls */}
-        <ControlsBar
-          selectedLeague={selectedLeague}
-          selectedSeason={selectedSeason}
-          selectedTeam={selectedTeam}
-          onLeagueChange={handleLeagueChange}
-          onSeasonChange={handleSeasonChange}
-          onTeamChange={handleTeamChange}
-          onUseDuke={handleUseDuke}
-        />
-
-        {/* Summary Bar */}
-        <SummaryBar
-          teamAverages={teamAverages}
-          hypeIndex={hypeIndex}
-          topPerformers={topPerformers}
-          usingMockData={usingMockData}
-        />
-
-        {/* Player Carousel */}
-        <PlayerStatsCarousel
-          players={players}
-          season={selectedSeason}
-          loading={loading}
-          onShare={handleShare}
-        />
-
-        {/* Error Display */}
-        {error && (
-          <div className="bg-red-900/20 border border-red-500/50 rounded-lg p-4">
-            <div className="flex items-center gap-2 text-red-400">
-              <span>⚠️</span>
-              <span>{error}</span>
+        <section className="space-y-8">
+          <div className="flex flex-wrap items-center justify-between gap-6">
+            <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+              Player spotlights
+            </h2>
+            <div className="flex flex-wrap gap-3">
+              {positions.map((position) => (
+                <motion.button
+                  key={position}
+                  type="button"
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setPositionFilter(position)}
+                  className={`rounded-full border px-4 py-2 text-xs uppercase tracking-[0.35em] transition ${
+                    positionFilter === position
+                      ? 'border-blue-300/60 bg-blue-500/20 text-blue-100 shadow-[0_0_30px_rgba(96,165,250,0.45)]'
+                      : 'border-white/10 bg-white/5 text-slate-300 hover:border-white/30 hover:text-white'
+                  }`}
+                >
+                  {position}
+                </motion.button>
+              ))}
             </div>
           </div>
-        )}
-      </main>
 
-      {/* Toast */}
-      <Toast message={toastMessage} onClose={() => setToastMessage('')} />
+          <PlayerCarousel players={filteredPlayers} />
+        </section>
+      </div>
     </div>
   );
 }
-
-export default App;
