@@ -8,7 +8,7 @@ export const players = [
     weight: '205 lbs',
     hometown: 'Newport, Maine',
     image:
-      'https://a.espncdn.com/photo/2024/0823/r1385573_1296x729_16-9.jpg',
+      '/src/assets/placeholder.png',
     blurb:
       "The top recruit in the nation brings elite athleticism, defensive instincts, and a versatile skill set that has Cameron Indoor buzzing this season.",
     stats: {
@@ -27,7 +27,7 @@ export const players = [
     weight: '190 lbs',
     hometown: 'Sydney, Australia',
     image:
-      'https://a.espncdn.com/photo/2024/0316/r1284894_1296x729_16-9.jpg',
+      '/src/assets/placeholder.png',
     blurb:
       "A composed floor general who keeps Duke's offense humming with crafty shot creation and smooth pick-and-roll reads.",
     stats: {
@@ -46,7 +46,7 @@ export const players = [
     weight: '200 lbs',
     hometown: 'Corona, California',
     image:
-      'https://a.espncdn.com/photo/2024/0316/r1284910_1296x729_16-9.jpg',
+    '/src/assets/placeholder.png',
     blurb:
       "Social media star turned sharpshooting sniper, McCain rains threes and brings contagious confidence to the Blue Devils.",
     stats: {
@@ -65,7 +65,7 @@ export const players = [
     weight: '248 lbs',
     hometown: 'Westtown, New York',
     image:
-      'https://a.espncdn.com/photo/2024/0212/r1273474_1296x729_16-9.jpg',
+    '/src/assets/placeholder.png',
     blurb:
       "Filipowski returns as an inside-out force, stretching defenses with his range while anchoring the paint with toughness.",
     stats: {
@@ -84,7 +84,7 @@ export const players = [
     weight: '195 lbs',
     hometown: 'Harrisburg, North Carolina',
     image:
-      'https://a.espncdn.com/photo/2023/1212/r1252545_1296x729_16-9.jpg',
+    '/src/assets/placeholder.png',
     blurb:
       "A downhill attacker with a feel for big moments, Foster gives Duke a fearless scoring punch off the bounce.",
     stats: {
