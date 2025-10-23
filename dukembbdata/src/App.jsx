@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import PlayerCarousel from './components/PlayerCarousel.jsx';
 import { players as basePlayers } from './data/players.js';
+import cameronStadium from './assets/cameron-indoor-stadium.jpg';
 
 const heroBadges = ['The Brotherhood', 'Duke MBB', 'Cameron Indoor'];
 
@@ -76,6 +77,20 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
+      <motion.div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `url(${cameronStadium})`,
+          backgroundSize: 'contain',
+          backgroundPosition: 'top center',
+          backgroundRepeat: 'no-repeat'
+        }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5, ease: 'easeOut' }}
+        aria-hidden
+      />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-slate-950/50 to-slate-950" aria-hidden />
       <div className={heroGlowClass} aria-hidden />
 
       <motion.div
@@ -101,7 +116,7 @@ export default function App() {
         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-24 px-6 pb-24 pt-16 sm:px-8 lg:px-12">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-24 px-6 pb-24 pt-16 sm:px-8 lg:px-12">
         <motion.section
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
