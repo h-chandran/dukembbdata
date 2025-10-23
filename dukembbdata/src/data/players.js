@@ -65,7 +65,7 @@ export const players = [
     weight: '248 lbs',
     hometown: 'Westtown, New York',
     image:
-    '/src/assets/kylefilipowski.jpg',
+    '/src/assets/kylefilipowskidukembb.jpg',
     blurb:
       "Filipowski returns as an inside-out force, stretching defenses with his range while anchoring the paint with toughness.",
     stats: {
