@@ -116,7 +116,7 @@ export default function App() {
         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-24 px-6 pb-24 pt-16 sm:px-8 lg:px-12">
+      <div className="relative z-10 flex w-full flex-col gap-24 px-4 pb-24 pt-16 sm:px-6">
         <motion.section
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
