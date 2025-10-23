@@ -60,7 +60,7 @@ const tickerItems = [
 ];
 
 const heroGlowClass =
-  'pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top,_rgba(37,99,235,0.35),_rgba(2,6,23,0.95))]';
+  'pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top,_rgba(37,99,235,0.25),_rgba(2,6,23,0.98))]';
 
 export default function App() {
   const [positionFilter, setPositionFilter] = useState('All');
@@ -86,11 +86,11 @@ export default function App() {
           backgroundRepeat: 'no-repeat'
         }}
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        animate={{ opacity: 0.3 }}
         transition={{ duration: 1.5, ease: 'easeOut' }}
         aria-hidden
       />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-slate-950/50 to-slate-950" aria-hidden />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-slate-950/70 to-slate-950" aria-hidden />
       <div className={heroGlowClass} aria-hidden />
 
       <motion.div
