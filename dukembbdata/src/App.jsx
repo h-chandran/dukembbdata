@@ -136,12 +136,12 @@ export default function App() {
               ))}
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-12">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, ease: 'easeOut', delay: 0.1 }}
-                className="text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl"
+                className="text-6xl font-semibold leading-tight text-white sm:text-7xl lg:text-8xl"
               >
                 The next wave of the Brotherhood is ready to light up Duke MBB.
               </motion.h1>
@@ -149,7 +149,7 @@ export default function App() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, ease: 'easeOut', delay: 0.2 }}
-                className="max-w-xl text-base text-slate-300/80 sm:text-lg"
+                className="max-w-2xl text-lg text-slate-300/80 sm:text-xl"
               >
                 From the roar of Cameron Indoor to the grind in Krzyzewskiville, this roster is wired for big moments. Scroll to
                 meet the players shaping Duke basketball&apos;s present and future.
