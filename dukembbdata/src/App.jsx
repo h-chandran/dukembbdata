@@ -192,33 +192,8 @@ export default function App() {
               transition={{ duration: 0.9, ease: 'easeOut', delay: 0.3 }}
               className="relative flex h-full w-full max-w-md items-center justify-center"
             >
-              <motion.div
-                className="absolute inset-0 rounded-[3rem] border border-blue-400/30"
-                animate={{ rotate: [0, 2, -2, 0] }}
-                transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-              />
-              <motion.div
-                className="absolute inset-8 rounded-[3rem] border border-white/10"
-                animate={{ opacity: [0.4, 0.7, 0.4] }}
-                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-              />
-              <div className="relative z-10 aspect-[5/6] w-full max-w-sm overflow-hidden rounded-[3rem] border border-white/10 bg-gradient-to-br from-slate-900/70 via-blue-500/20 to-slate-950/90 p-8">
-                <div className="absolute inset-0 bg-[conic-gradient(from_120deg,_rgba(59,130,246,0.2),_rgba(14,165,233,0.05),_rgba(147,51,234,0.25),_rgba(59,130,246,0.2))] opacity-50" />
-                <div className="relative flex h-full flex-col justify-between">
-                  <motion.div
-                    className="rounded-3xl border border-blue-400/40 bg-blue-500/20 p-6 shadow-[0_0_60px_rgba(59,130,246,0.35)]"
-                    animate={{ scale: [1, 1.04, 1] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                  >
-                    <p className="text-xs uppercase tracking-[0.4em] text-blue-100/70">Brotherhood Signal</p>
-                    <p className="mt-4 text-2xl font-semibold text-white">Cameron Indoor Reverberation</p>
-                    <p className="mt-3 text-sm text-slate-200/70">
-                      Game nights register seismic energy. The roar peaks when the starting five lock in, and the Crazies turn the court into a light show.
-                    </p>
-                  </motion.div>
-                  <div className="text-right text-[0.55rem] uppercase tracking-[0.45em] text-white/50">Powered by Duke MBB Labs</div>
-                </div>
-              </div>
+              
+              
             </motion.div>
           </div>
         </motion.section>
