@@ -168,7 +168,7 @@ export default function App() {
                 whileTap={{ scale: 0.95 }}
                 className="rounded-full border border-white/20 bg-white/5 px-6 py-3 text-[0.65rem] uppercase tracking-[0.45em] text-white/80 transition hover:border-white/40 hover:text-white"
               >
-                Watch Cameron Moments
+                Find Duke's Next Game
               </motion.button>
             </div>
           </div>
