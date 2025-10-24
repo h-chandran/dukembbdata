@@ -124,18 +124,6 @@ export default function App() {
           className="flex min-h-screen items-center justify-center"
         >
           <div className="w-full max-w-6xl mx-auto text-center space-y-12">
-            <div className="flex flex-wrap justify-center items-center gap-4 text-[0.6rem] uppercase tracking-[0.45em] text-blue-100/70">
-              {heroBadges.map((badge) => (
-                <motion.span
-                  key={badge}
-                  whileHover={{ scale: 1.05 }}
-                  className="rounded-full border border-white/10 bg-white/10 px-3 py-1 text-blue-100/80 backdrop-blur"
-                >
-                  {badge}
-                </motion.span>
-              ))}
-            </div>
-
             <div className="space-y-8">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
