@@ -166,6 +166,7 @@ export default function App() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => window.open('https://goduke.com/sports/mens-basketball/schedule', '_blank')}
                 className="rounded-full border border-white/20 bg-white/5 px-6 py-3 text-[0.65rem] uppercase tracking-[0.45em] text-white/80 transition hover:border-white/40 hover:text-white"
               >
                 Find Duke's Next Game
