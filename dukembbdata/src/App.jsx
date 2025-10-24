@@ -116,15 +116,15 @@ export default function App() {
         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      <div className="relative z-10 flex w-full flex-col gap-24 px-4 pb-24 pt-16 sm:px-6">
+      <div className="relative z-10 flex w-full flex-col px-4 sm:px-6">
         <motion.section
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr]"
+          className="flex min-h-screen items-center justify-center"
         >
-          <div className="space-y-10">
-            <div className="flex flex-wrap items-center gap-4 text-[0.6rem] uppercase tracking-[0.45em] text-blue-100/70">
+          <div className="w-full max-w-6xl mx-auto text-center space-y-12">
+            <div className="flex flex-wrap justify-center items-center gap-4 text-[0.6rem] uppercase tracking-[0.45em] text-blue-100/70">
               {heroBadges.map((badge) => (
                 <motion.span
                   key={badge}
@@ -136,7 +136,7 @@ export default function App() {
               ))}
             </div>
 
-            <div className="space-y-12">
+            <div className="space-y-8">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -149,14 +149,14 @@ export default function App() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, ease: 'easeOut', delay: 0.2 }}
-                className="max-w-2xl text-lg text-slate-300/80 sm:text-xl"
+                className="max-w-4xl mx-auto text-lg text-slate-300/80 sm:text-xl"
               >
                 From the roar of Cameron Indoor to the grind in Krzyzewskiville, this roster is wired for big moments. Scroll to
                 meet the players shaping Duke basketball&apos;s present and future.
               </motion.p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.4em] text-blue-100/80">
+            <div className="flex flex-wrap justify-center items-center gap-6 text-xs uppercase tracking-[0.4em] text-blue-100/80">
               <span className="flex items-center gap-2">
                 <span className="h-2 w-2 animate-pulse rounded-full bg-blue-400 shadow-[0_0_12px_rgba(96,165,250,0.8)]" />
                 Brotherhood Pulse Live
@@ -167,7 +167,7 @@ export default function App() {
               </span>
             </div>
 
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap justify-center items-center gap-4">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -184,19 +184,9 @@ export default function App() {
               </motion.button>
             </div>
           </div>
-
-          <div className="relative flex justify-center lg:justify-end">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.75 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.9, ease: 'easeOut', delay: 0.3 }}
-              className="relative flex h-full w-full max-w-md items-center justify-center"
-            >
-              
-              
-            </motion.div>
-          </div>
         </motion.section>
+
+        <div className="flex flex-col gap-24 pb-24">
 
         <section className="grid gap-10 rounded-3xl border border-white/10 bg-white/5 p-10 backdrop-blur">
           <motion.div
@@ -343,6 +333,7 @@ export default function App() {
             ))}
           </motion.div>
         </motion.div>
+        </div>
       </div>
     </div>
   );
