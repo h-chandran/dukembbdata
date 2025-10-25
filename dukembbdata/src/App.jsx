@@ -217,7 +217,7 @@ export default function App() {
           </motion.div>
         </section>
 
-        <section className="rounded-3xl border border-white/10 bg-slate-950/70 p-10 backdrop-blur">
+        {/* <section className="rounded-3xl border border-white/10 bg-slate-950/70 p-10 backdrop-blur">
           <div className="flex flex-col gap-6 text-center">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -250,7 +250,7 @@ export default function App() {
               </motion.div>
             ))}
           </div>
-        </section>
+        </section> */}
 
         <section className="relative overflow-hidden rounded-3xl border border-blue-400/30 bg-gradient-to-b from-blue-500/20 via-slate-950/80 to-slate-950 p-10 shadow-[0_0_60px_rgba(37,99,235,0.25)]">
           <motion.div
