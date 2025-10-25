@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import PlayerCarousel from './components/PlayerCarousel.jsx';
 import { players as basePlayers } from './data/players.js';
@@ -64,6 +64,13 @@ const heroGlowClass =
 
 export default function App() {
   const [positionFilter, setPositionFilter] = useState('All');
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const positions = useMemo(() => {
     const unique = new Set(basePlayers.map((player) => player.position));
@@ -83,7 +90,9 @@ export default function App() {
           backgroundImage: `url(${cameronStadium})`,
           backgroundSize: 'contain',
           backgroundPosition: 'top center',
-          backgroundRepeat: 'no-repeat'
+          backgroundRepeat: 'no-repeat',
+          filter: scrollY > 100 ? `blur(${Math.min((scrollY - 100) / 20, 8)}px)` : 'blur(0px)',
+          transition: 'filter 0.3s ease-out'
         }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.3 }}
