@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import PlayerCarousel from './components/PlayerCarousel.jsx';
 import { players as basePlayers } from './data/players.js';
@@ -60,10 +60,17 @@ const tickerItems = [
 ];
 
 const heroGlowClass =
-  'pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top,_rgba(37,99,235,0.35),_rgba(2,6,23,0.95))]';
+  'pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top,_rgba(37,99,235,0.25),_rgba(2,6,23,0.98))]';
 
 export default function App() {
   const [positionFilter, setPositionFilter] = useState('All');
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const positions = useMemo(() => {
     const unique = new Set(basePlayers.map((player) => player.position));
@@ -83,14 +90,16 @@ export default function App() {
           backgroundImage: `url(${cameronStadium})`,
           backgroundSize: 'contain',
           backgroundPosition: 'top center',
-          backgroundRepeat: 'no-repeat'
+          backgroundRepeat: 'no-repeat',
+          filter: scrollY > 100 ? `blur(${Math.min((scrollY - 100) / 20, 8)}px)` : 'blur(0px)',
+          transition: 'filter 0.3s ease-out'
         }}
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        animate={{ opacity: 0.3 }}
         transition={{ duration: 1.5, ease: 'easeOut' }}
         aria-hidden
       />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-slate-950/50 to-slate-950" aria-hidden />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-slate-950/70 to-slate-950" aria-hidden />
       <div className={heroGlowClass} aria-hidden />
 
       <motion.div
@@ -116,32 +125,20 @@ export default function App() {
         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-24 px-6 pb-24 pt-16 sm:px-8 lg:px-12">
+      <div className="relative z-10 flex w-full flex-col px-4 sm:px-6">
         <motion.section
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr]"
+          className="flex min-h-screen items-center justify-center"
         >
-          <div className="space-y-10">
-            <div className="flex flex-wrap items-center gap-4 text-[0.6rem] uppercase tracking-[0.45em] text-blue-100/70">
-              {heroBadges.map((badge) => (
-                <motion.span
-                  key={badge}
-                  whileHover={{ scale: 1.05 }}
-                  className="rounded-full border border-white/10 bg-white/10 px-3 py-1 text-blue-100/80 backdrop-blur"
-                >
-                  {badge}
-                </motion.span>
-              ))}
-            </div>
-
-            <div className="space-y-6">
+          <div className="w-full max-w-6xl mx-auto text-center space-y-12">
+            <div className="space-y-8">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, ease: 'easeOut', delay: 0.1 }}
-                className="text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl"
+                className="text-6xl font-semibold leading-tight text-white sm:text-7xl lg:text-8xl"
               >
                 The next wave of the Brotherhood is ready to light up Duke MBB.
               </motion.h1>
@@ -149,14 +146,14 @@ export default function App() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, ease: 'easeOut', delay: 0.2 }}
-                className="max-w-xl text-base text-slate-300/80 sm:text-lg"
+                className="max-w-4xl mx-auto text-lg text-slate-300/80 sm:text-xl"
               >
                 From the roar of Cameron Indoor to the grind in Krzyzewskiville, this roster is wired for big moments. Scroll to
                 meet the players shaping Duke basketball&apos;s present and future.
               </motion.p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.4em] text-blue-100/80">
+            <div className="flex flex-wrap justify-center items-center gap-6 text-xs uppercase tracking-[0.4em] text-blue-100/80">
               <span className="flex items-center gap-2">
                 <span className="h-2 w-2 animate-pulse rounded-full bg-blue-400 shadow-[0_0_12px_rgba(96,165,250,0.8)]" />
                 Brotherhood Pulse Live
@@ -167,7 +164,7 @@ export default function App() {
               </span>
             </div>
 
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap justify-center items-center gap-4">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -178,50 +175,16 @@ export default function App() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => window.open('https://goduke.com/sports/mens-basketball/schedule', '_blank')}
                 className="rounded-full border border-white/20 bg-white/5 px-6 py-3 text-[0.65rem] uppercase tracking-[0.45em] text-white/80 transition hover:border-white/40 hover:text-white"
               >
-                Watch Cameron Moments
+                Find Duke's Next Game
               </motion.button>
             </div>
           </div>
-
-          <div className="relative flex justify-center lg:justify-end">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.75 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.9, ease: 'easeOut', delay: 0.3 }}
-              className="relative flex h-full w-full max-w-md items-center justify-center"
-            >
-              <motion.div
-                className="absolute inset-0 rounded-[3rem] border border-blue-400/30"
-                animate={{ rotate: [0, 2, -2, 0] }}
-                transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-              />
-              <motion.div
-                className="absolute inset-8 rounded-[3rem] border border-white/10"
-                animate={{ opacity: [0.4, 0.7, 0.4] }}
-                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-              />
-              <div className="relative z-10 aspect-[5/6] w-full max-w-sm overflow-hidden rounded-[3rem] border border-white/10 bg-gradient-to-br from-slate-900/70 via-blue-500/20 to-slate-950/90 p-8">
-                <div className="absolute inset-0 bg-[conic-gradient(from_120deg,_rgba(59,130,246,0.2),_rgba(14,165,233,0.05),_rgba(147,51,234,0.25),_rgba(59,130,246,0.2))] opacity-50" />
-                <div className="relative flex h-full flex-col justify-between">
-                  <motion.div
-                    className="rounded-3xl border border-blue-400/40 bg-blue-500/20 p-6 shadow-[0_0_60px_rgba(59,130,246,0.35)]"
-                    animate={{ scale: [1, 1.04, 1] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                  >
-                    <p className="text-xs uppercase tracking-[0.4em] text-blue-100/70">Brotherhood Signal</p>
-                    <p className="mt-4 text-2xl font-semibold text-white">Cameron Indoor Reverberation</p>
-                    <p className="mt-3 text-sm text-slate-200/70">
-                      Game nights register seismic energy. The roar peaks when the starting five lock in, and the Crazies turn the court into a light show.
-                    </p>
-                  </motion.div>
-                  <div className="text-right text-[0.55rem] uppercase tracking-[0.45em] text-white/50">Powered by Duke MBB Labs</div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
         </motion.section>
+
+        <div className="flex flex-col gap-24 pb-24">
 
         <section className="grid gap-10 rounded-3xl border border-white/10 bg-white/5 p-10 backdrop-blur">
           <motion.div
@@ -263,7 +226,7 @@ export default function App() {
           </motion.div>
         </section>
 
-        <section className="rounded-3xl border border-white/10 bg-slate-950/70 p-10 backdrop-blur">
+        {/* <section className="rounded-3xl border border-white/10 bg-slate-950/70 p-10 backdrop-blur">
           <div className="flex flex-col gap-6 text-center">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -296,7 +259,7 @@ export default function App() {
               </motion.div>
             ))}
           </div>
-        </section>
+        </section> */}
 
         <section className="relative overflow-hidden rounded-3xl border border-blue-400/30 bg-gradient-to-b from-blue-500/20 via-slate-950/80 to-slate-950 p-10 shadow-[0_0_60px_rgba(37,99,235,0.25)]">
           <motion.div
@@ -368,6 +331,7 @@ export default function App() {
             ))}
           </motion.div>
         </motion.div>
+        </div>
       </div>
     </div>
   );
