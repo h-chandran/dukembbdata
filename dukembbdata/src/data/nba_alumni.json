@@ -1,0 +1,170 @@
+[
+  {
+    "full_name": "Grant Hill",
+    "years_at_duke": "1990-1994",
+    "position": "SF",
+    "current_nba_team": "Retired",
+    "active": false,
+    "career_stats": {
+      "total_points": null,
+      "nba_championships": 0,
+      "all_star_appearances": 7
+    },
+    "notable_achievements": ["Hall of Famer", "All-Star", "All-NBA"],
+    "image": "/src/assets/players/grant_hill.png"
+  },
+  {
+    "full_name": "Christian Laettner",
+    "years_at_duke": "1988-1992",
+    "position": "PF/C",
+    "current_nba_team": "Retired",
+    "active": false,
+    "career_stats": {
+      "total_points": null,
+      "nba_championships": 0,
+      "all_star_appearances": 1
+    },
+    "notable_achievements": ["Dream Team member (1992)", "All-Star"],
+    "image": "/src/assets/players/christian_laettner.png"
+  },
+  {
+    "full_name": "Kyrie Irving",
+    "years_at_duke": "2010-2011",
+    "position": "PG",
+    "current_nba_team": "Dallas Mavericks",
+    "active": true,
+    "career_stats": {
+      "total_points": null,
+      "nba_championships": 1,
+      "all_star_appearances": null
+    },
+    "notable_achievements": ["NBA Champion", "All-Star", "All-NBA", "Rookie of the Year"],
+    "image": "/src/assets/players/kyrie_irving.png"
+  },
+  {
+    "full_name": "Jayson Tatum",
+    "years_at_duke": "2016-2017",
+    "position": "SF",
+    "current_nba_team": "Boston Celtics",
+    "active": true,
+    "career_stats": {
+      "total_points": null,
+      "nba_championships": 1,
+      "all_star_appearances": null
+    },
+    "notable_achievements": ["NBA Champion", "All-Star", "All-NBA"],
+    "image": "/src/assets/players/jayson_tatum.png"
+  },
+  {
+    "full_name": "Zion Williamson",
+    "years_at_duke": "2018-2019",
+    "position": "PF",
+    "current_nba_team": "New Orleans Pelicans",
+    "active": true,
+    "career_stats": {
+      "total_points": null,
+      "nba_championships": 0,
+      "all_star_appearances": null
+    },
+    "notable_achievements": ["All-Star", "All-NBA", "Rookie of the Year"],
+    "image": "/src/assets/players/zion_williamson.png"
+  },
+  {
+    "full_name": "Paolo Banchero",
+    "years_at_duke": "2021-2022",
+    "position": "PF",
+    "current_nba_team": "Orlando Magic",
+    "active": true,
+    "career_stats": {
+      "total_points": null,
+      "nba_championships": 0,
+      "all_star_appearances": null
+    },
+    "notable_achievements": ["All-Star", "Rookie of the Year"],
+    "image": "/src/assets/players/paolo_banchero.png"
+  },
+  {
+    "full_name": "Brandon Ingram",
+    "years_at_duke": "2015-2016",
+    "position": "SF",
+    "current_nba_team": "New Orleans Pelicans",
+    "active": true,
+    "career_stats": {
+      "total_points": null,
+      "nba_championships": 0,
+      "all_star_appearances": null
+    },
+    "notable_achievements": ["All-Star", "Most Improved Player"],
+    "image": "/src/assets/players/brandon_ingram.png"
+  },
+  {
+    "full_name": "RJ Barrett",
+    "years_at_duke": "2018-2019",
+    "position": "SG/SF",
+    "current_nba_team": "Toronto Raptors",
+    "active": true,
+    "career_stats": {
+      "total_points": null,
+      "nba_championships": 0,
+      "all_star_appearances": null
+    },
+    "notable_achievements": [],
+    "image": "/src/assets/players/rj_barrett.png"
+  },
+  {
+    "full_name": "Shane Battier",
+    "years_at_duke": "1997-2001",
+    "position": "SF",
+    "current_nba_team": "Retired",
+    "active": false,
+    "career_stats": {
+      "total_points": null,
+      "nba_championships": 2,
+      "all_star_appearances": 0
+    },
+    "notable_achievements": ["NBA Champion", "All-Defense"],
+    "image": "/src/assets/players/shane_battier.png"
+  },
+  {
+    "full_name": "JJ Redick",
+    "years_at_duke": "2002-2006",
+    "position": "SG",
+    "current_nba_team": "Retired",
+    "active": false,
+    "career_stats": {
+      "total_points": null,
+      "nba_championships": 0,
+      "all_star_appearances": 0
+    },
+    "notable_achievements": [],
+    "image": "/src/assets/players/jj_redick.png"
+  },
+  {
+    "full_name": "Tyus Jones",
+    "years_at_duke": "2014-2015",
+    "position": "PG",
+    "current_nba_team": "TBD",
+    "active": true,
+    "career_stats": {
+      "total_points": null,
+      "nba_championships": 0,
+      "all_star_appearances": 0
+    },
+    "notable_achievements": [],
+    "image": "/src/assets/players/tyus_jones.png"
+  },
+  {
+    "full_name": "Elton Brand",
+    "years_at_duke": "1997-1999",
+    "position": "PF/C",
+    "current_nba_team": "Retired",
+    "active": false,
+    "career_stats": {
+      "total_points": null,
+      "nba_championships": 0,
+      "all_star_appearances": 2
+    },
+    "notable_achievements": ["All-Star", "Executive of the Year (front office role, 76ers)"],
+    "image": "/src/assets/players/elton_brand.png"
+  }
+]

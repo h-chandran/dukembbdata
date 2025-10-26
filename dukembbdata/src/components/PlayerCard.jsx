@@ -22,8 +22,8 @@ export default function PlayerCard({ player }) {
 
       <div className="relative flex h-full flex-col justify-between p-6">
         <header className="space-y-2">
-          <div className="flex items-center gap-3 text-sm uppercase tracking-[0.3em] text-blue-200/80">
-            <span className="rounded-full border border-blue-300/30 px-3 py-1 text-blue-100/90">
+          <div className="flex items-center gap-3 text-sm uppercase tracking-[0.3em] text-duke-blue-200/80">
+            <span className="rounded-full border border-duke-blue-300/30 px-3 py-1 text-duke-blue-100/90">
               #{player.number}
             </span>
             <span>{player.position}</span>
@@ -64,7 +64,7 @@ export default function PlayerCard({ player }) {
             {player.strengths.map((strength) => (
               <span
                 key={strength}
-                className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[0.65rem] text-blue-100/80 backdrop-blur"
+                className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[0.65rem] text-duke-blue-100/80 backdrop-blur"
               >
                 {strength}
               </span>
