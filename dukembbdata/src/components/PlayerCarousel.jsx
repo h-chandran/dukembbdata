@@ -67,7 +67,7 @@ export default function PlayerCarousel({ players }) {
 
   return (
     <section className="relative mx-auto flex w-full max-w-6xl flex-col items-center gap-10">
-      <div className="absolute inset-x-0 top-1/2 h-[22rem] -translate-y-1/2 rounded-full bg-blue-500/10 blur-3xl" aria-hidden />
+      <div className="absolute inset-x-0 top-1/2 h-[22rem] -translate-y-1/2 rounded-full bg-duke-blue-500/10 blur-3xl" aria-hidden />
 
       <div className="flex w-full items-center justify-between gap-6">
         <motion.button
@@ -146,7 +146,7 @@ export default function PlayerCarousel({ players }) {
             <span
               className={`h-2 w-8 rounded-full transition ${
                 idx === index
-                  ? 'bg-blue-400 shadow-[0_0_20px_rgba(96,165,250,0.6)]'
+                  ? 'bg-duke-blue-400 shadow-[0_0_20px_rgba(0,83,155,0.6)]'
                   : 'bg-white/20 group-hover:bg-white/40'
               }`}
             />
