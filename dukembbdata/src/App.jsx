@@ -9,6 +9,7 @@ import nbaAlumniData from './data/nba_alumni.json';
 import currentTeamData from './data/duke_roster_2025_26.json';
 import legacyData from './data/legacy_stats.json';
 import cameronStadium from './assets/cameron-indoor-stadium.jpg';
+import dukeWebsiteBg from './assets/dukembbwebsitebg.png';
 
 const heroBadges = ['The Brotherhood', 'Duke MBB', 'Cameron Indoor'];
 
@@ -190,27 +191,26 @@ export default function App() {
           </div>
         </motion.section>
 
-        <div className="flex flex-col pb-24">
-          
-          {/* Blurred Divider Line */}
-          <div className="relative my-32">
-            <div className="absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
-            <div className="absolute inset-x-0 top-1/2 h-8 bg-gradient-to-r from-transparent via-white/5 to-transparent blur-sm"></div>
-          </div>
+        <div 
+          className="flex flex-col pb-24 relative"
+          style={{
+            backgroundImage: `url(${dukeWebsiteBg})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed'
+          }}
+        >
+          {/* Background overlay for content readability */}
+          <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-[0.5px] pointer-events-none" aria-hidden />
 
           {/* NBA Alumni Section */}
-          <section className="mb-32">
+          <section className="mb-32 relative z-10">
             <NBAAlumniSection alumniData={nbaAlumniData} />
           </section>
 
-          {/* Blurred Divider Line */}
-          <div className="relative my-32">
-            <div className="absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
-            <div className="absolute inset-x-0 top-1/2 h-8 bg-gradient-to-r from-transparent via-white/5 to-transparent blur-sm"></div>
-          </div>
-
           {/* Current Team 2025-26 Section */}
-          <section className="mb-32">
+          <section className="mb-32 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -230,14 +230,8 @@ export default function App() {
             </motion.div>
           </section>
 
-          {/* Blurred Divider Line */}
-          <div className="relative my-32">
-            <div className="absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
-            <div className="absolute inset-x-0 top-1/2 h-8 bg-gradient-to-r from-transparent via-white/5 to-transparent blur-sm"></div>
-          </div>
-
           {/* Legacy Stats Section */}
-          <section className="mb-32">
+          <section className="mb-32 relative z-10">
             <LegacyStats legacyData={legacyData} />
           </section>
 
@@ -276,14 +270,8 @@ export default function App() {
           </div>
         </section> */}
 
-          {/* Blurred Divider Line */}
-          <div className="relative my-32">
-            <div className="absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
-            <div className="absolute inset-x-0 top-1/2 h-8 bg-gradient-to-r from-transparent via-white/5 to-transparent blur-sm"></div>
-          </div>
-
           {/* Player Holograms Section */}
-          <section className="mb-32">
+          <section className="mb-32 relative z-10">
             <div className="relative flex flex-col gap-6 text-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
