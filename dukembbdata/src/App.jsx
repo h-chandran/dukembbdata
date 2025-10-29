@@ -98,7 +98,7 @@ export default function App() {
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           backgroundAttachment: 'fixed',
-          filter: scrollY > window.innerHeight ? `blur(${Math.min((scrollY - window.innerHeight) / 50, 12)}px)` : 'blur(0px)',
+          filter: scrollY > window.innerHeight * 0.6 ? `blur(${Math.min((scrollY - window.innerHeight * 0.6) / 30, 12)}px)` : 'blur(0px)',
           transition: 'filter 0.3s ease-out'
         }}
         initial={{ opacity: 0 }}
