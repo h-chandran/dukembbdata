@@ -94,18 +94,19 @@ export default function App() {
         className="absolute inset-0 z-0"
         style={{
           backgroundImage: `url(${cameronStadium})`,
-          backgroundSize: 'contain',
-          backgroundPosition: 'top center',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          filter: scrollY > 100 ? `blur(${Math.min((scrollY - 100) / 20, 8)}px)` : 'blur(0px)',
+          backgroundAttachment: 'fixed',
+          filter: scrollY > window.innerHeight * 0.6 ? `blur(${Math.min((scrollY - window.innerHeight * 0.6) / 30, 12)}px)` : 'blur(0px)',
           transition: 'filter 0.3s ease-out'
         }}
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.3 }}
+        animate={{ opacity: 0.4 }}
         transition={{ duration: 1.5, ease: 'easeOut' }}
         aria-hidden
       />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-slate-950/70 to-slate-950" aria-hidden />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-slate-950/40 to-slate-950/80" aria-hidden />
       <div className={heroGlowClass} aria-hidden />
 
       <motion.div
@@ -190,38 +191,38 @@ export default function App() {
           </div>
         </motion.section>
 
-        <div className="flex flex-col gap-24 pb-24">
+        <div className="flex flex-col pb-24">
 
-        {/* NBA Alumni Section */}
-        <section className="rounded-3xl border border-white/10 bg-white/5 p-10 backdrop-blur">
-          <NBAAlumniSection alumniData={nbaAlumniData} />
-        </section>
+          {/* NBA Alumni Section */}
+          <section className="mb-32">
+            <NBAAlumniSection alumniData={nbaAlumniData} />
+          </section>
 
-        {/* Current Team 2025-26 Section */}
-        <section className="rounded-3xl border border-white/10 bg-white/5 p-10 backdrop-blur">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="space-y-8"
-          >
-            <div className="text-center space-y-4">
-              <h2 className="text-3xl font-bold text-white sm:text-4xl">
-                2025-26 Brotherhood
-              </h2>
-              <p className="text-slate-300 max-w-3xl mx-auto text-lg">
-                The next generation of Blue Devils ready to carry the torch. Meet the roster that will define Duke basketball's future.
-              </p>
-            </div>
-            <TeamGrid players={currentTeamData} />
-          </motion.div>
-        </section>
+          {/* Current Team 2025-26 Section */}
+          <section className="mb-32">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+              className="space-y-8"
+            >
+              <div className="text-center space-y-4">
+                <h2 className="text-3xl font-bold text-white sm:text-4xl">
+                  2025-26 Brotherhood
+                </h2>
+                <p className="text-slate-300 max-w-3xl mx-auto text-lg">
+                  The next generation of Blue Devils ready to carry the torch. Meet the roster that will define Duke basketball's future.
+                </p>
+              </div>
+              <TeamGrid players={currentTeamData} />
+            </motion.div>
+          </section>
 
-        {/* Legacy Stats Section */}
-        <section className="rounded-3xl border border-white/10 bg-white/5 p-10 backdrop-blur">
-          <LegacyStats legacyData={legacyData} />
-        </section>
+          {/* Legacy Stats Section */}
+          <section className="mb-32">
+            <LegacyStats legacyData={legacyData} />
+          </section>
 
         {/* <section className="rounded-3xl border border-white/10 bg-slate-950/70 p-10 backdrop-blur">
           <div className="flex flex-col gap-6 text-center">
@@ -258,59 +259,51 @@ export default function App() {
           </div>
         </section> */}
 
-        <section className="relative overflow-hidden rounded-3xl border border-duke-blue-400/30 bg-gradient-to-b from-duke-blue-500/20 via-slate-950/80 to-slate-950 p-10 shadow-[0_0_60px_rgba(0,83,155,0.25)]">
-          <motion.div
-            aria-hidden
-            className="absolute inset-x-6 -top-10 h-20 rounded-full border border-duke-blue-400/40 bg-duke-blue-500/30 blur-lg"
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-          />
+          {/* Player Holograms Section */}
+          <section className="mb-32">
+            <div className="relative flex flex-col gap-6 text-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+                className="space-y-4"
+              >
+                <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">Player Holograms</h2>
+                <p className="mx-auto max-w-2xl text-sm text-slate-200/80 sm:text-base">
+                  Cycle through the standouts driving Duke basketball. Filter by position to watch how the Brotherhood balances size, shooting, and leadership across the floor.
+                </p>
+              </motion.div>
 
-          <div className="relative flex flex-col gap-6 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="space-y-4"
-            >
-              <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">Player Holograms</h2>
-              <p className="mx-auto max-w-2xl text-sm text-slate-200/80 sm:text-base">
-                Cycle through the standouts driving Duke basketball. Filter by position to watch how the Brotherhood balances size, shooting, and leadership across the floor.
-              </p>
-            </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+                className="flex flex-wrap justify-center gap-3 text-[0.6rem] uppercase tracking-[0.4em] text-duke-blue-100/80"
+              >
+                {positions.map((position) => (
+                  <motion.button
+                    key={position}
+                    type="button"
+                    whileTap={{ scale: 0.92 }}
+                    onClick={() => setPositionFilter(position)}
+                    className={`rounded-full border px-4 py-2 transition ${
+                      positionFilter === position
+                        ? 'border-duke-blue-300/60 bg-duke-blue-500/20 text-duke-blue-100 shadow-[0_0_30px_rgba(0,83,155,0.45)]'
+                        : 'border-white/10 bg-white/5 text-slate-200 hover:border-white/30 hover:text-white'
+                    }`}
+                  >
+                    {position}
+                  </motion.button>
+                ))}
+              </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="flex flex-wrap justify-center gap-3 text-[0.6rem] uppercase tracking-[0.4em] text-duke-blue-100/80"
-            >
-              {positions.map((position) => (
-                <motion.button
-                  key={position}
-                  type="button"
-                  whileTap={{ scale: 0.92 }}
-                  onClick={() => setPositionFilter(position)}
-                  className={`rounded-full border px-4 py-2 transition ${
-                    positionFilter === position
-                      ? 'border-duke-blue-300/60 bg-duke-blue-500/20 text-duke-blue-100 shadow-[0_0_30px_rgba(0,83,155,0.45)]'
-                      : 'border-white/10 bg-white/5 text-slate-200 hover:border-white/30 hover:text-white'
-                  }`}
-                >
-                  {position}
-                </motion.button>
-              ))}
-            </motion.div>
-          </div>
-
-          <div className="relative mt-12 rounded-3xl border border-white/10 bg-slate-950/70 p-6">
-            <PlayerCarousel players={filteredPlayers} />
-          </div>
-        </section>
+            <div className="relative mt-12">
+              <PlayerCarousel players={filteredPlayers} />
+            </div>
+          </section>
 
         <motion.div
           aria-label="Brotherhood ticker"
