@@ -9,7 +9,6 @@ import nbaAlumniData from './data/nba_alumni.json';
 import currentTeamData from './data/duke_roster_2025_26.json';
 import legacyData from './data/legacy_stats.json';
 import cameronStadium from './assets/cameron-indoor-stadium.jpg';
-import dukeWebsiteBg from './assets/dukembbwebsitebg.png';
 
 const heroBadges = ['The Brotherhood', 'Duke MBB', 'Cameron Indoor'];
 
@@ -95,18 +94,19 @@ export default function App() {
         className="absolute inset-0 z-0"
         style={{
           backgroundImage: `url(${cameronStadium})`,
-          backgroundSize: 'contain',
-          backgroundPosition: 'top center',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          filter: scrollY > 100 ? `blur(${Math.min((scrollY - 100) / 20, 8)}px)` : 'blur(0px)',
+          backgroundAttachment: 'fixed',
+          filter: scrollY > window.innerHeight ? `blur(${Math.min((scrollY - window.innerHeight) / 50, 12)}px)` : 'blur(0px)',
           transition: 'filter 0.3s ease-out'
         }}
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.3 }}
+        animate={{ opacity: 0.4 }}
         transition={{ duration: 1.5, ease: 'easeOut' }}
         aria-hidden
       />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-slate-950/70 to-slate-950" aria-hidden />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-slate-950/40 to-slate-950/80" aria-hidden />
       <div className={heroGlowClass} aria-hidden />
 
       <motion.div
@@ -191,26 +191,15 @@ export default function App() {
           </div>
         </motion.section>
 
-        <div 
-          className="flex flex-col pb-24 relative"
-          style={{
-            backgroundImage: `url(${dukeWebsiteBg})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundAttachment: 'fixed'
-          }}
-        >
-          {/* Background overlay for content readability */}
-          <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-[0.5px] pointer-events-none" aria-hidden />
+        <div className="flex flex-col pb-24">
 
           {/* NBA Alumni Section */}
-          <section className="mb-32 relative z-10">
+          <section className="mb-32">
             <NBAAlumniSection alumniData={nbaAlumniData} />
           </section>
 
           {/* Current Team 2025-26 Section */}
-          <section className="mb-32 relative z-10">
+          <section className="mb-32">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -231,7 +220,7 @@ export default function App() {
           </section>
 
           {/* Legacy Stats Section */}
-          <section className="mb-32 relative z-10">
+          <section className="mb-32">
             <LegacyStats legacyData={legacyData} />
           </section>
 
@@ -271,7 +260,7 @@ export default function App() {
         </section> */}
 
           {/* Player Holograms Section */}
-          <section className="mb-32 relative z-10">
+          <section className="mb-32">
             <div className="relative flex flex-col gap-6 text-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
